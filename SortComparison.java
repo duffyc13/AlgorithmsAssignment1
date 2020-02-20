@@ -44,9 +44,21 @@
      */
     static double [] selectionSort (double a[])
     {
-
-         //todo: implement the sort
-
+    	double length = a.length;
+    	for (int i = 0; i < length-1; i++)
+    	{
+    		 int min = i; 
+             for (int j = i+1; j < length; j++) 
+             {
+            	 if (a[j] < a[min]) 
+                     min = j;
+             }
+             
+             double tempElement = a[min];
+             a[min] = a[i];
+             a[i] = tempElement;
+    	}
+    	return a;
     }//end selectionsort
 
     /**
