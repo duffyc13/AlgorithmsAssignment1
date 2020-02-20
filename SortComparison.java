@@ -71,8 +71,8 @@
     static double [] quickSort (double a[])
     {
 	
-		 //todo: implement the sort
-
+		 
+    	return a;
     }//end quicksort
 
     /**
@@ -94,7 +94,7 @@
     {
 
 		 //todo: implement the sort
-	
+    	return a;
     }//end mergesortIterative
     
     
@@ -111,7 +111,7 @@
     	
 
     	//todo: implement the sort
-	
+    	return a;
    }//end mergeSortRecursive
     	
     
