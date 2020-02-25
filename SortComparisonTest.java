@@ -82,6 +82,16 @@ public class SortComparisonTest
     	assertArrayEquals(expected, sorted, 0);
     }
     
+    @Test
+    public void testQuick()
+    {
+    	double test[] = {77.88,10.6,58.1,22.0,55.3,4.7,6.2,35.3,49.8,18.6};
+    	double expected[] = {4.7,6.2,10.6,18.6,22.0,35.3,49.8,55.3,58.1,77.88};
+    	double sorted[] = SortComparison.quickSort(test);
+    	
+    	assertArrayEquals(expected, sorted, 0);
+    }
+    
     
     
     
