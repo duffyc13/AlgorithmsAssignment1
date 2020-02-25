@@ -72,7 +72,7 @@
     static double [] quickSort (double a[])
     {		 
     	int len = a.length;
-    	sort(a, 0, len - 1);
+    	quickSortRecursive(a, 0, len - 1);
     	return a;
     }//end quicksort
 
@@ -97,13 +97,13 @@
 	    return i + 1;
     }
     
-    static void sort (double a[], int low , int high)
+    static void quickSortRecursive (double a[], int low , int high)
     {
     	if (low < high)
     	{
 			int pi = partition(a, low, high);
-			sort(a, low, pi-1);
-			sort(a, pi + 1, high);
+			quickSortRecursive(a, low, pi-1);
+			quickSortRecursive(a, pi + 1, high);
     	}
     }
     /**
@@ -123,12 +123,22 @@
 
     static double[] mergeSortIterative (double a[]) 
     {
+		int n = a.length;
+		
+		for (int current = 1; current <= n-1; current = 2*current)
+		{
+            for (int left = 0; left < n-1; 
+                        left += 2*current) 
+            { 
+                int mid = Math.min(left + current - 1, n-1); 
+          
+                int right_end = Math.min(left + 2*current - 1, n-1); 
 
-		 //todo: implement the sort
+                merge(a, left, mid, right_end);
+            }
+		}
     	return a;
-    }//end mergesortIterative
-    
-    
+    }//end mergesortIterative    
     
     /**
      * Sorts an array of doubles using recursive implementation of Merge Sort.
@@ -140,16 +150,68 @@
     static double[] mergeSortRecursive (double a[]) 
     {
     	
-
-    	//todo: implement the sort
     	return a;
-   }//end mergeSortRecursive
-    	
     
+    }//end mergeSortRecursive
+    
+    static void mergeSort (double a[], int left, int right)
+    {
+    	if (left < right) 
+        { 
+            int m = (left+right)/2; 
 
+            mergeSort(a, left, m); 
+            mergeSort(a , m+1, right); 
+ 
+            merge(a, left, m, right); 
+        } 
+    }
+    
+    static void merge (double a[], int l, int m, int r) 
+    {
+    	int i, j, k; 
+        int n1 = m - l + 1; 
+        int n2 = r - m; 
 
-   
-
+        double L[] = new double[n1]; 
+        double R[] = new double[n2]; 
+     
+        for (i = 0; i < n1; i++) 
+            L[i] = a[l + i]; 
+        for (j = 0; j < n2; j++) 
+            R[j] = a[m + 1+ j]; 
+      
+        i = 0; 
+        j = 0; 
+        k = l; 
+        while (i < n1 && j < n2) 
+        { 
+            if (L[i] <= R[j]) 
+            { 
+                a[k] = L[i]; 
+                i++; 
+            } 
+            else
+            { 
+                a[k] = R[j]; 
+                j++; 
+            } 
+            k++; 
+        } 
+        while (i < n1) 
+        { 
+            a[k] = L[i]; 
+            i++; 
+            k++; 
+        } 
+      
+        while (j < n2) 
+        { 
+            a[k] = R[j]; 
+            j++; 
+            k++; 
+        } 
+    }
 
     public static void main(String[] args) 
     {
