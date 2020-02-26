@@ -1,5 +1,6 @@
 // -------------------------------------------------------------------------
-
+import java.io.*;
+import java.util.*;
 /**
  *  This class contains static methods that implementing sorting of an array of numbers
  *  using different sort algorithms.
@@ -150,6 +151,7 @@
     static double[] mergeSortRecursive (double a[]) 
     {
     	
+    	mergeSort (a, 0, a.length - 1);
     	return a;
     
     }//end mergeSortRecursive
@@ -215,8 +217,60 @@
 
     public static void main(String[] args) 
     {
-
-        //todo: do experiments as per assignment instructions
+    	try {
+    		Scanner sc = new Scanner(new File("numbersSorted1000.txt"));
+            double[] numbers1 = new double[1000];
+            double[] numbers2 = new double[1000];
+            double[] numbers3 = new double[1000];
+            double[] numbers4 = new double[1000];
+            double[] numbers5 = new double[1000];
+            int i = 0;
+            while(sc.hasNextLine() && i < numbers1.length) {
+            	double element = Double.valueOf(sc.nextLine());
+                numbers1[i] = element;
+                numbers2[i] = element;
+                numbers3[i] = element;
+                numbers4[i] = element;
+                numbers5[i] = element;
+                i++;
+            }
+        
+         long start1 = System.nanoTime();
+         double insertedSort[] = insertionSort(numbers1);
+         long finish1 = System.nanoTime();
+         long timeElapsed1 = finish1 - start1;
+         System.out.println(timeElapsed1);
+         
+         
+         long start2 = System.nanoTime();
+         double selectionSort[] = insertionSort(numbers2);
+         long finish2 = System.nanoTime();
+         long timeElapsed2 = finish2 - start2;
+         System.out.println(timeElapsed2);
+         
+         long start3 = System.nanoTime();
+         double quickSort[] = insertionSort(numbers3);
+         long finish3 = System.nanoTime();
+         long timeElapsed3 = finish3 - start3;
+         System.out.println(timeElapsed3);
+         
+         long start4 = System.nanoTime();
+         double mergeSort1[] = insertionSort(numbers4);
+         long finish4 = System.nanoTime();
+         long timeElapsed4 = finish4 - start4;
+         System.out.println(timeElapsed4);
+         
+         long start5 = System.nanoTime();
+         double mergeSort2[] = insertionSort(numbers5);
+         long finish5 = System.nanoTime();
+         long timeElapsed5 = finish5 - start5;
+         System.out.println(timeElapsed5);
+         
+         sc.close();
+    	}catch(FileNotFoundException e){}
+    	
     }
+        //todo: do experiments as per assignment instructions
 
  }//end class
+
